@@ -16,3 +16,7 @@ channel_name=The specific YouTube channel name
 ```
 
 - It suggests that using the `cronjob` setting to let `yt.py` run as the scheduler.
+
+## References
+
+- Thanks for the [reposeitory](https://github.com/bogeta11040/if-youtube-channel-live) to let me figure out this project :).
