@@ -16,6 +16,7 @@ channel_name = config[need_keys[1]]
 channel_name_url = 'https://www.youtube.com/' + channel_name
 ifttt_event_url = config[need_keys[0]]
 
+response = requests.get(channel_name_url)
 if 'hqdefault_live.jpg' in response.text:
     requests.get(ifttt_event_url)
     print('Sending the %s is done!' % ifttt_event_url)
