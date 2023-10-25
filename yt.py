@@ -7,7 +7,7 @@ config_keys = list(config.keys())
 need_keys = [
     'ifttt_service_url', 'channel_name',
 ]
-for need_key in need_key:
+for need_key in need_keys:
     if need_key not in config_keys:
         raise Error('%s is not found in .env file!' % need_key)
 
