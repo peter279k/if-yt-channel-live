@@ -1,4 +1,5 @@
 import requests
+import video_content_parser
 from dotenv import dotenv_values
 
 
@@ -20,6 +21,11 @@ response = requests.get(channel_name_url)
 if 'hqdefault_live.jpg' in response.text:
     requests.get(ifttt_event_url)
     print('Sending the %s is done!' % ifttt_event_url)
+    video_ids = video_content_parser.video_content_parser(response.text)
+    with open('./yt_video_ids.txt', encoding='utf-8', mode='a') as f:
+        for video_id in video_ids:
+            f.write(video_id + '\n')
 
+    print('The YouTube video id text file is saved.')
 
 print('Checking is done!')
