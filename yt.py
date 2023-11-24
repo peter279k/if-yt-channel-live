@@ -24,8 +24,10 @@ if 'hqdefault_live.jpg' in response.text:
     print('Sending the %s is done!' % ifttt_event_url)
     video_ids = video_content_parser.video_content_parser(response.text)
     yt_path = './yt_video_ids.txt'
-    with open(yt_path, encoding='utf-8', mode='r') as f:
-        contents = f.read()
+    contents = ''
+    if os.path.isfile(yt_path) is True:
+        with open(yt_path, encoding='utf-8', mode='r') as f:
+            contents = f.read()
 
     with open(yt_path, encoding='utf-8', mode='a') as f:
         for video_id in video_ids:
