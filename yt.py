@@ -24,8 +24,9 @@ soup = BeautifulSoup(response.text, 'html.parser')
 video_link = soup.select('link[rel="canonical"]')
 if len(video_link) == 1:
     requests.get(ifttt_event_url)
+    video_link = video_link[0]['href']
     print('Sending the %s is done!' % ifttt_event_url)
-    video_ids = video_content_parser.video_content_parser(video_link[0])
+    video_ids = video_content_parser.video_content_parser(video_link)
     yt_path = './yt_video_ids.txt'
     contents = ''
     if os.path.isfile(yt_path) is True:
