@@ -26,9 +26,7 @@ def video_content_parser(contents):
         video_id = json_dict['contents']['twoColumnWatchNextResults']['results']['results']['contents'][0]['videoPrimaryInfoRenderer']['videoActions']['menuRenderer']['topLevelButtons'][0]['segmentedLikeDislikeButtonViewModel']['likeButtonViewModel']['likeButtonViewModel']['toggleButtonViewModel']['toggleButtonViewModel']['defaultButtonViewModel']['buttonViewModel']['onTap']['serialCommand']['commands'][1]['innertubeCommand']['modalEndpoint']['modal]']['modalWithTitleAndButtonRenderer']['button']['buttonRenderer']['navigationEndpoint']['signInEndpoint']['nextEndpoint']['likeEndpoint']['target']['videoId']
 
         video_ids = [video_id]
-        video_ids_append = video_ids.append
-     except Exception:
+     except:
         pass
-
 
     return video_ids
