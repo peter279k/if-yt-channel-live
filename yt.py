@@ -23,10 +23,14 @@ response = requests.get(channel_name_url)
 soup = BeautifulSoup(response.text, 'html.parser')
 video_link = soup.select('link[rel="canonical"]')
 if len(video_link) == 1:
-    requests.get(ifttt_event_url)
     video_link = video_link[0]['href']
     print('Sending the %s is done!' % ifttt_event_url)
     video_ids = video_content_parser.video_content_parser(video_link)
+    if len(video_ids) == 0:
+        print('There is no live video in this channel.')
+        exit(0)
+
+    requests.get(ifttt_event_url)
     yt_path = './yt_video_ids.txt'
     contents = ''
     if os.path.isfile(yt_path) is True:
