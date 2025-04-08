@@ -23,10 +23,11 @@ def video_content_parser(contents):
     json_dict = json.loads(json_content)
     video_ids = []
     try:
-        video_id = json_dict['contents']['twoColumnWatchNextResults']['results']['results']['contents'][0]['videoPrimaryInfoRenderer']['videoActions']['menuRenderer']['topLevelButtons'][0]['segmentedLikeDislikeButtonViewModel']['likeButtonViewModel']['likeButtonViewModel']['toggleButtonViewModel']['toggleButtonViewModel']['defaultButtonViewModel']['buttonViewModel']['onTap']['serialCommand']['commands'][1]['innertubeCommand']['modalEndpoint']['modal]']['modalWithTitleAndButtonRenderer']['button']['buttonRenderer']['navigationEndpoint']['signInEndpoint']['nextEndpoint']['likeEndpoint']['target']['videoId']
+        video_id = json_dict['contents']['twoColumnWatchNextResults']['results']['results']['contents'][0]['videoPrimaryInfoRenderer']['videoActions']['menuRenderer']['topLevelButtons'][0]['segmentedLikeDislikeButtonViewModel']['likeButtonViewModel']['likeButtonViewModel']['toggleButtonViewModel']['toggleButtonViewModel']['defaultButtonViewModel']['buttonViewModel']['onTap']['serialCommand']['commands'][1]['innertubeCommand']['modalEndpoint']['modal']['modalWithTitleAndButtonRenderer']['button']['buttonRenderer']['navigationEndpoint']['signInEndpoint']['nextEndpoint']['likeEndpoint']['target']['videoId']
 
         video_ids = [video_id]
-    except:
+    except Exception as e:
+        print(e)
         pass
 
     return video_ids
