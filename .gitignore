@@ -1,2 +1,4 @@
+*.txt
 .env
+__pycache__/
 Pipfile.lock
