@@ -1,5 +1,6 @@
 import os
 import requests
+from bs4 import BeautifulSoup
 import video_content_parser
 from dotenv import dotenv_values
 
@@ -15,11 +16,13 @@ for need_key in need_keys:
 
 
 channel_name = config[need_keys[1]]
-channel_name_url = 'https://www.youtube.com/' + channel_name
+channel_name_url = 'https://www.youtube.com/' + channel_name + '/live'
 ifttt_event_url = config[need_keys[0]]
 
 response = requests.get(channel_name_url)
-if 'hqdefault_live.jpg' in response.text:
+soup = BeautifulSoup(response.text, 'html.parser')
+video_link = soup.select('link[rel="canonical"]')
+if len(video_link) == 1:
     requests.get(ifttt_event_url)
     print('Sending the %s is done!' % ifttt_event_url)
     video_ids = video_content_parser.video_content_parser(response.text)
